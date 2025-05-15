@@ -115,7 +115,7 @@
       color: #00DDEB;
       font-size: 48px;
       font-weight: 700;
-      margin-bottom: 40px;
+      margin-bottom: 20px; /* Уменьшен отступ */
       padding: 0 20px;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -230,17 +230,17 @@
       color: #FF0000;
       font-size: 48px;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 20px; /* Уменьшен отступ */
       animation: blink 0.5s infinite;
     }
 
     /* Общие стили */
     section {
-      padding: 100px 20px;
+      padding: 40px 20px; /* Уменьшен общий отступ */
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      min-height: 100vh;
+      min-height: 50vh; /* Уменьшен минимальный размер секции */
       position: relative;
       opacity: 0;
       transform: translateY(50px);
@@ -259,7 +259,7 @@
       border-radius: 10px;
       width: 100%;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 20px auto; /* Уменьшен отступ */
     }
 
     .youth .about p, .youth .why-me p, .youth .testimonials p {
@@ -278,7 +278,7 @@
     .services {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 10px; /* Уменьшен промежуток между карточками */
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
@@ -287,7 +287,7 @@
     .service-card {
       display: flex;
       align-items: center;
-      padding: 20px;
+      padding: 15px; /* Уменьшен внутренний отступ */
       border-radius: 15px;
       transition: transform 0.3s ease;
       width: 100%;
@@ -328,7 +328,7 @@
 
     .service-card h3 {
       font-size: 24px;
-      margin-bottom: 10px;
+      margin-bottom: 5px; /* Уменьшен отступ */
     }
 
     .youth .service-card h3 {
@@ -343,15 +343,17 @@
     .service-card p {
       font-size: 16px;
       color: #B0B0C0;
+      margin-top: 5px; /* Уменьшен отступ */
     }
 
     .portfolio {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      gap: 15px; /* Уменьшен промежуток между элементами */
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 20px 0; /* Добавлен отступ сверху и снизу */
     }
 
     .youth .portfolio img {
@@ -361,6 +363,7 @@
       border-radius: 15px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px; /* Добавлен отступ между гифками и текстом */
     }
 
     .youth .portfolio img:hover {
@@ -373,10 +376,11 @@
       height: auto;
       border: 5px solid #FF00FF;
       animation: shake 0.5s infinite;
+      margin-bottom: 20px; /* Добавлен отступ между гифками и текстом */
     }
 
     .testimonials div {
-      margin: 20px 0;
+      margin: 10px 0; /* Уменьшен отступ */
       padding: 20px;
       border-radius: 10px;
       width: 100%;
@@ -757,7 +761,7 @@
           </div>
         </div>
         <div class="service-card">
-          <img src="images/service_meme_new4.gif" alt="Meme Dump" class="service-img" id="service4Img">
+          <img src="images/service_meme_new1.gif" alt="Meme Dump" class="service-img" id="service4Img">
           <div>
             <h3>Низкосортные мемы</h3>
             <p>Простые и весёлые мемы!</p>
@@ -942,9 +946,9 @@
           renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Плавная загрузка гифок для молодёжной версии с повторной проверкой
+        // Плавная загрузка гифок для молодёжной версии
         const service4Img = document.getElementById('service4Img');
-        loadImage(service4Img, 'images/service_meme_new4.gif', 'images/fallback_meme.gif');
+        loadImage(service4Img, 'images/service_meme_new1.gif', 'images/fallback_meme.gif');
 
         document.querySelectorAll('.youth .service-img').forEach(img => {
           if (img !== service4Img) {
