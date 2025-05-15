@@ -175,9 +175,9 @@
       height: 100vh;
       text-align: center;
       padding: 20px;
-      background: url('images/retro2.gif') repeat;
+      background: url('images/retro_background.gif') repeat;
       position: relative;
-      background-size: 50px 50px;
+      background-size: 100px 100px; /* Увеличенный размер для более "пиксельного" эффекта */
     }
 
     .retro .hero::after {
@@ -187,16 +187,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('images/tv_noise.gif');
-      opacity: 0.1;
+      background: url('images/retro_noise.gif');
+      opacity: 0.2;
       z-index: -1;
-      animation: tvNoise 0.1s infinite;
+      animation: tvNoise 0.2s infinite;
     }
 
     @keyframes tvNoise {
-      0% { transform: translate(1px, 1px); }
-      50% { transform: translate(-1px, -1px); }
-      100% { transform: translate(1px, 1px); }
+      0% { transform: translate(2px, 2px); }
+      50% { transform: translate(-2px, -2px); }
+      100% { transform: translate(2px, 2px); }
     }
 
     .retro .logo {
@@ -617,6 +617,25 @@
       overflow: hidden;
     }
 
+    .transition-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/sphere_background.gif') no-repeat center;
+      background-size: cover;
+      opacity: 0.5;
+      z-index: -1;
+      animation: spinBackground 5s linear infinite;
+    }
+
+    @keyframes spinBackground {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .portal {
       width: 300px;
       height: 300px;
@@ -694,10 +713,6 @@
 
   <div class="transition-overlay" id="transitionOverlay">
     <div class="portal youth"></div>
-    <img src="images/portal_meme1.gif" style="top: 10%; animation-delay: 0.1s;">
-    <img src="images/portal_meme2.gif" style="top: 30%; animation-delay: 0.3s;">
-    <img src="images/portal_meme3.gif" style="top: 50%; animation-delay: 0.5s;">
-    <img src="images/portal_meme4.gif" style="top: 70%; animation-delay: 0.7s;">
     <img id="clock" class="clock" src="images/clock_youth_new.gif">
   </div>
 
@@ -709,7 +724,7 @@
       <a href="#services">Услуги</a>
       <a href="#portfolio">Портфолио</a>
       <a href="#testimonials">Отзывы</a>
-      <a href="#contact">Связь</a>
+      <a href="#contact"> NORTHСвязь</a>
     </div>
   </nav>
 
@@ -902,11 +917,6 @@
         opacity: 1,
         duration: 0.5,
         onComplete: () => {
-          gsap.to('.transition-overlay img', {
-            scale: 0,
-            duration: 1.5,
-            stagger: 0.2
-          });
           gsap.to('.portal', {
             scale: 2,
             duration: 2,
