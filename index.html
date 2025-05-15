@@ -52,7 +52,7 @@
 
     body {
       transition: all 0.5s;
-      overflow: hidden;
+      overflow-x: hidden; /* Исправление бага с ползунком */
     }
 
     /* Молодёжный стиль */
@@ -101,12 +101,17 @@
     .youth .logo {
       width: 300px;
       height: 100px;
-      animation: neonGlow 2s infinite;
     }
 
-    @keyframes neonGlow {
-      0%, 100% { filter: drop-shadow(0 0 10px #6B4E9B); }
-      50% { filter: drop-shadow(0 0 20px #00C4FF); }
+    .youth h2 {
+      color: #00C4FF;
+      background: linear-gradient(90deg, #1C2526, #6B4E9B);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 40px;
     }
 
     .youth .hero p {
@@ -240,35 +245,22 @@
       100% { transform: translate(1px, 1px) rotate(0deg); }
     }
 
-    /* Общие стили */
-    section {
-      padding: 100px 20px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    h2 {
+    .retro h2 {
+      color: #FF0000;
+      background: linear-gradient(90deg, #FFFF00, #FF00FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-size: 48px;
       text-align: center;
       margin-bottom: 40px;
     }
 
-    .youth h2 {
-      color: #00C4FF;
-      text-shadow: 0 0 15px #00C4FF;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .retro h2 {
-      color: #FF0000;
-      text-decoration: underline;
-      animation: blink 0.5s infinite;
+    /* Общие стили */
+    section {
+      padding: 100px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .about p, .why-me p, .testimonials p {
@@ -450,7 +442,6 @@
       border: 3px solid #FF00FF;
       color: #0000FF;
       cursor: pointer;
-      animation: blink 0.5s infinite;
     }
 
     footer {
@@ -519,7 +510,6 @@
     .retro .modal-content h2 {
       color: #FF0000;
       font-size: 36px;
-      animation: blink 0.5s infinite;
     }
 
     .modal-content button {
@@ -642,6 +632,7 @@
       <h2>Скок лет, бро?</h2>
       <button onclick="startTransition('youth')">42, братишка, эщкере!</button>
       <button id="retroButton" onclick="startTransition('retro')" style="font-family: 'Comic Sans MS', cursive; background: #00FF00; border: 3px solid #0000FF; color: #FF0000;">Я дед, где мой ICQ?</button>
+      <img id="clockModal" src="images/clock_youth_new.gif" style="width: 150px; height: 150px; margin-top: 20px;">
     </div>
   </div>
 
@@ -651,7 +642,7 @@
     <img src="images/portal_meme2.gif" style="top: 30%; animation-delay: 0.3s;">
     <img src="images/portal_meme3.gif" style="top: 50%; animation-delay: 0.5s;">
     <img src="images/portal_meme4.gif" style="top: 70%; animation-delay: 0.7s;">
-    <img id="clock" class="clock" src="images/clock_youth.gif">
+    <img id="clock" class="clock" src="images/clock_youth_new.gif">
   </div>
 
   <nav class="navbar">
@@ -681,7 +672,7 @@
 
     <section id="about" class="about">
       <h2>Кто я?</h2>
-      <p>Я Кирилл Мищенко, мем-лорд и мастер подбора. Создаю мемы, которые взрывают чаты, и монтирую видосы, от которых падает челюсть. Хочешь, чтобы твой паблик или ролик стали мемами-легендами? Я твой чел!</p>
+      <p>Я Кирилл Мищенко, мемный урод, который роет мемы из могил и смеётся над твоей мамкой. Мой мозг — мусорка с кринжом 2000-х, а монтаж — как если бы дедуля с тремором резал видео. Хочешь мемов, от которых хочется повеситься? Звони, я помогу сдохнуть от смеха!</p>
     </section>
 
     <section id="why-me" class="why-me">
@@ -693,34 +684,34 @@
       <h2>Мои услуги</h2>
       <div class="youth">
         <div class="service-card">
-          <img src="images/service_meme.gif" alt="Meme">
+          <img src="images/service_meme_new1.gif" alt="Meme Selection">
           <div>
-            <h3>Подбор мемов</h3>
-            <p>Выберу мемы и сделаю короткие ролики для тус или пабликов. Вирусный вайб гарантирован!</p>
+            <h3>Подберу любой мем, даже самый грязный</h3>
+            <p>Найду мемы, от которых твоя бабушка покраснеет, и закидаю их в твой чат!</p>
             <p>Цена: 420 RUB</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="images/service_video.gif" alt="Video">
+          <img src="images/service_meme_new2.gif" alt="Video Editing">
           <div>
-            <h3>Монтаж роликов</h3>
-            <p>Смонтирую видосы с киберпанк-эффектами для YouTube или TikTok. Будет огонь!</p>
+            <h3>Смонтирую хуже твоей бабушки</h3>
+            <p>Сделаю ролик, который выглядит, будто его резал слепой с паркинсоном!</p>
             <p>Цена: 69 USD</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="images/service_meme.gif" alt="Meme Therapy">
+          <img src="images/service_meme_new3.gif" alt="Depression Spam">
           <div>
-            <h3>Мем-терапия для депрессии</h3>
-            <p>Заставлю тебя ржать над твоей собственной жалкой жизнью с абсурдными мемами. Гарантия: или смех, или ты умрёшь от идиотизма!</p>
+            <h3>Буду кидать полный бред для депрессии</h3>
+            <p>Залью твою ленту мемами, от которых захочется прыгнуть с крыши!</p>
             <p>Цена: 666 RUB</p>
           </div>
         </div>
         <div class="service-card">
-          <img src="images/service_video.gif" alt="Meme Attack">
+          <img src="images/service_video.gif" alt="Meme Dump">
           <div>
-            <h3>Мем-атака на врагов</h3>
-            <p>Залью соцсети твоих врагов мемами настолько тупыми, что они сбегут в психушку. Полный хаос гарантирован!</p>
+            <h3>Насру низкосортными мемами</h3>
+            <p>Залью тебя мемами уровня “школьный туалет” — полный отстой!</p>
             <p>Цена: 13 BTC</p>
           </div>
         </div>
@@ -742,6 +733,30 @@
             <p>Цена: 42 ETH</p>
           </div>
         </div>
+        <div class="service-card">
+          <img src="images/retro_service_meme.gif" alt="Retro Spam">
+          <div>
+            <h3>Спам ретро-криптой</h3>
+            <p>Залью твои чаты мемами про ICQ и диал-ап — ностальгия до слёз!</p>
+            <p>Цена: 88 JPY</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <img src="images/retro_service_social.gif" alt="Retro Hacking">
+          <div>
+            <h3>Хакни ICQ врагов</h3>
+            <p>Отправлю врагам мемы через старый ICQ, пока они не сбегут в 90-е!</p>
+            <p>Цена: 99 ETH</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <img src="images/retro_service_meme.gif" alt="Retro Funeral">
+          <div>
+            <h3>Мемы на похороны</h3>
+            <p>Сделаю мемы для твоих поминок — ржать будут даже покойники!</p>
+            <p>Цена: 1000 JPY</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -753,17 +768,17 @@
       <img src="images/meme4.gif" alt="Meme 4" class="youth">
       <img src="images/meme5.gif" alt="Meme 5" class="youth">
       <img src="images/meme6.gif" alt="Meme 6" class="youth">
-      <img src="images/retro1.gif" alt="Retro 1" class="retro" style="display: none;">
-      <img src="images/retro2.gif" alt="Retro 2" class="retro" style="display: none;">
-      <img src="images/retro3.gif" alt="Retro 3" class="retro" style="display: none;">
-      <img src="images/retro4.gif" alt="Retro 4" class="retro" style="display: none;">
-      <img src="images/retro5.gif" alt="Retro 5" class="retro" style="display: none;">
+      <img src="images/retro1.gif" alt="Retro 1" class="retro">
+      <img src="images/retro2.gif" alt="Retro 2" class="retro">
+      <img src="images/retro3.gif" alt="Retro 3" class="retro">
+      <img src="images/retro4.gif" alt="Retro 4" class="retro">
+      <img src="images/retro5.gif" alt="Retro 5" class="retro">
     </section>
 
     <section id="testimonials" class="testimonials">
       <h2>Отзывы</h2>
       <div>
-        <p>“Кирилл закидал меня мемами про мою смерть — теперь я ржу в гробу, гений!” — Дима, зомби 11 класса</p>
+        <p>“Кирилл закидал меня мемами про мою мать — теперь я в детдоме!”</p>
       </div>
       <div>
         <p>“Его мемы такие чёрные, что я умер от смеха, а потом воскрес как мем-монстр!” — Аня, блогер-нежить</p>
@@ -772,7 +787,7 @@
         <p>“Мемы от Кирилла — мой мозг взорвался, теперь я овощ с лол-кеками в голове!” — Макс, школьный призрак</p>
       </div>
       <div>
-        <p>“Смонтировал ролик, где я танцую на своём похоронах — миллион просмотров, спасибо, садист!” — Саша, ютубер-скелет</p>
+        <p>“Смонтировал ролик, где я танцую на своих похоронах — миллион просмотров, спасибо, садист!” — Саша, ютубер-скелет</p>
       </div>
       <div class="retro" style="display: none;">
         <p>“Ретро-мемы от Кирилла довели меня до инфаркта, теперь я привидение с ICQ!” — Тётя Света, дух 90-х</p>
@@ -810,7 +825,7 @@
       portal.className = 'portal ' + style;
 
       if (style === 'youth') {
-        clock.src = 'images/clock_youth.gif';
+        clock.src = 'images/clock_youth_new.gif';
       } else {
         clock.src = 'images/clock_retro.gif';
       }
