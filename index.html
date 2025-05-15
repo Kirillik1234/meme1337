@@ -52,7 +52,7 @@
 
     body {
       transition: all 0.5s;
-      overflow-x: hidden; /* Устранение ползунка */
+      overflow-x: hidden;
       min-height: 100vh;
     }
 
@@ -79,12 +79,11 @@
       text-decoration: none;
       margin: 0 15px;
       font-size: 18px;
-      transition: color 0.3s, text-shadow 0.3s;
+      transition: color 0.3s;
     }
 
     .youth .navbar a:hover {
       color: #6B4E9B;
-      text-shadow: 0 0 10px #6B4E9B;
     }
 
     .youth .hero {
@@ -107,10 +106,6 @@
 
     .youth h2 {
       color: #00C4FF;
-      background: linear-gradient(90deg, #1C2526, #6B4E9B);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
       font-size: 48px;
       text-align: center;
       margin-bottom: 40px;
@@ -137,28 +132,10 @@
       cursor: pointer;
       border-radius: 5px;
       transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
     }
 
     .youth .hero button:hover {
-      box-shadow: 0 0 20px #6B4E9B;
-      transform: scale(1.1);
-    }
-
-    .youth .hero button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(107, 78, 155, 0.5), transparent);
-      transition: 0.5s;
-    }
-
-    .youth .hero button:hover::before {
-      left: 100%;
+      background: #6B4E9B;
     }
 
     #particles {
@@ -175,7 +152,7 @@
       background: #FFFFFF;
       color: #0000FF;
       font-family: 'Comic Sans MS', cursive;
-      overflow: auto;
+      overflow-x: hidden; /* Исправление ползунка */
     }
 
     .retro .navbar {
@@ -183,6 +160,7 @@
       padding: 10px;
       text-align: center;
       border-bottom: 5px double #FF00FF;
+      width: 100%;
     }
 
     .retro .navbar a {
@@ -199,6 +177,7 @@
       padding: 20px;
       background: url('images/retro2.gif') repeat;
       position: relative;
+      background-size: 50px 50px; /* Уменьшенный паттерн для заполнения */
     }
 
     .retro .hero::after {
@@ -262,7 +241,46 @@
       width: 100%;
       max-width: 100%;
       margin: 0 auto;
-      min-height: 100vh; /* Устранение дёрганья */
+      min-height: 100vh;
+    }
+
+    .about, .why-me, .testimonials, .services, .portfolio, .contact {
+      position: relative;
+    }
+
+    /* Добавление фонов для заполнения пустого пространства */
+    .youth .about::before,
+    .youth .why-me::before,
+    .youth .testimonials::before,
+    .youth .services::before,
+    .youth .portfolio::before,
+    .youth .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(107, 78, 155, 0.2), transparent);
+      z-index: -1;
+    }
+
+    .retro .about::before,
+    .retro .why-me::before,
+    .retro .testimonials::before,
+    .retro .services::before,
+    .retro .portfolio::before,
+    .retro .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/retro2.gif') repeat;
+      background-size: 50px 50px;
+      opacity: 0.3;
+      z-index: -1;
     }
 
     .about p, .why-me p, .testimonials p {
@@ -271,6 +289,8 @@
       padding: 20px;
       border-radius: 10px;
       width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .youth .about p, .youth .why-me p, .youth .testimonials p {
@@ -294,6 +314,8 @@
       flex-direction: column;
       gap: 20px;
       width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .service-card {
@@ -308,12 +330,10 @@
     .youth .service-card {
       background: rgba(107, 78, 155, 0.2);
       border: 2px solid #6B4E9B;
-      transform: perspective(1000px) rotateY(0deg);
     }
 
     .youth .service-card:hover {
-      transform: perspective(1000px) rotateY(10deg);
-      box-shadow: 0 0 20px #6B4E9B;
+      transform: scale(1.02);
     }
 
     .retro .service-card {
@@ -355,6 +375,8 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .youth .portfolio img {
@@ -362,12 +384,11 @@
       height: 200px;
       object-fit: cover;
       border-radius: 10px;
-      transition: transform 0.3s, filter 0.3s;
+      transition: transform 0.3s;
     }
 
     .youth .portfolio img:hover {
       transform: scale(1.05);
-      filter: drop-shadow(0 0 15px #6B4E9B);
     }
 
     .retro .portfolio img {
@@ -381,8 +402,13 @@
       margin: 20px 0;
       padding: 20px;
       border-radius: 10px;
-      animation: shakeLight 0.5s infinite; /* Дрожание отзывов */
       width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .retro .testimonials div {
+      animation: shakeLight 0.5s infinite; /* Шатание только в ретро-версии */
     }
 
     @keyframes shakeLight {
@@ -405,8 +431,11 @@
       flex-direction: column;
       max-width: 600px;
       margin: 0 auto;
-      animation: shakeStrong 0.3s infinite; /* Сильное дрожание формы */
       width: 100%;
+    }
+
+    .retro .contact form {
+      animation: shakeStrong 0.3s infinite; /* Сильное шатание только в ретро-версии */
     }
 
     @keyframes shakeStrong {
@@ -425,12 +454,11 @@
       border: 2px solid #00C4FF;
       color: #F4F4F4;
       border-radius: 5px;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      transition: border-color 0.3s;
     }
 
     .youth .contact input:focus, .youth .contact textarea:focus {
       border-color: #6B4E9B;
-      box-shadow: 0 0 10px #6B4E9B;
       outline: none;
     }
 
@@ -442,12 +470,11 @@
       color: #F4F4F4;
       cursor: pointer;
       border-radius: 5px;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s;
     }
 
     .youth .contact button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 20px #6B4E9B;
     }
 
     .retro .contact input, .retro .contact textarea {
@@ -614,14 +641,6 @@
       100% { transform: translate(0, 0) scale(0); opacity: 0; }
     }
 
-    /* Параллакс */
-    .youth .parallax {
-      position: relative;
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-    }
-
     @media (max-width: 768px) {
       .youth .hero .logo, .retro .logo {
         width: 200px;
@@ -683,7 +702,7 @@
   </nav>
 
   <div class="content" style="display: none;">
-    <section id="home" class="hero parallax" style="background-image: url('images/parallax_bg.gif');">
+    <section id="home" class="hero">
       <canvas id="particles" class="youth"></canvas>
       <svg class="logo youth" viewBox="0 0 300 100">
         <text x="50%" y="50%" text-anchor="middle" fill="#00C4FF" font-size="60" font-family="Orbitron" font-weight="bold" textLength="280">MEMES</text>
