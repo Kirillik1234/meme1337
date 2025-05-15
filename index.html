@@ -152,7 +152,7 @@
       background: #FFFFFF;
       color: #0000FF;
       font-family: 'Comic Sans MS', cursive;
-      overflow-x: hidden; /* Исправление ползунка */
+      overflow-x: hidden;
     }
 
     .retro .navbar {
@@ -177,7 +177,7 @@
       padding: 20px;
       background: url('images/retro2.gif') repeat;
       position: relative;
-      background-size: 50px 50px; /* Уменьшенный паттерн для заполнения */
+      background-size: 50px 50px;
     }
 
     .retro .hero::after {
@@ -242,43 +242,55 @@
       max-width: 100%;
       margin: 0 auto;
       min-height: 100vh;
+      position: relative;
     }
 
     .about, .why-me, .testimonials, .services, .portfolio, .contact {
       position: relative;
     }
 
-    /* Добавление фонов для заполнения пустого пространства */
-    .youth .about::before,
-    .youth .why-me::before,
-    .youth .testimonials::before,
-    .youth .services::before,
-    .youth .portfolio::before,
-    .youth .contact::before {
+    /* Декоративные элементы между секциями */
+    .youth section::after {
       content: '';
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(107, 78, 155, 0.2), transparent);
+      height: 50px;
+      background: linear-gradient(to top, rgba(107, 78, 155, 0.3), transparent);
       z-index: -1;
     }
 
-    .retro .about::before,
-    .retro .why-me::before,
-    .retro .testimonials::before,
-    .retro .services::before,
-    .retro .portfolio::before,
-    .retro .contact::before {
-      content: '';
+    .youth .decorative-particles {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('images/retro2.gif') repeat;
+      background: url('images/particles.gif') repeat;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    .retro section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: url('images/retro_line.gif') repeat-x;
       background-size: 50px 50px;
+      z-index: -1;
+    }
+
+    .retro .decorative-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/retro_line.gif') repeat;
       opacity: 0.3;
       z-index: -1;
     }
@@ -408,7 +420,7 @@
     }
 
     .retro .testimonials div {
-      animation: shakeLight 0.5s infinite; /* Шатание только в ретро-версии */
+      animation: shakeLight 0.5s infinite;
     }
 
     @keyframes shakeLight {
@@ -435,7 +447,7 @@
     }
 
     .retro .contact form {
-      animation: shakeStrong 0.3s infinite; /* Сильное шатание только в ретро-версии */
+      animation: shakeStrong 0.3s infinite;
     }
 
     @keyframes shakeStrong {
@@ -715,16 +727,22 @@
     </section>
 
     <section id="about" class="about">
+      <div class="youth decorative-particles"></div>
+      <div class="retro decorative-lines"></div>
       <h2>Кто я?</h2>
       <p>Я Кирилл Мищенко, мемный урод, который роет мемы из могил и смеётся над твоей мамкой. Мой мозг — мусорка с кринжом 2000-х, а монтаж — как если бы дедуля с тремором резал видео. Хочешь мемов, от которых хочется повеситься? Звони, я помогу сдохнуть от смеха!</p>
     </section>
 
     <section id="why-me" class="why-me">
+      <div class="youth decorative-particles"></div>
+      <div class="retro decorative-lines"></div>
       <h2>Почему я?</h2>
       <p>Я знаю, как подобрать мемы, которые рвут шаблоны, и контент, который разлетается по чатам. В курсе всех трендов — от TikTok до ретро-вайба. Выбирай меня, и твой вайб будет на максималках!</p>
     </section>
 
     <section id="services" class="services">
+      <div class="youth decorative-particles"></div>
+      <div class="retro decorative-lines"></div>
       <h2>Мои услуги</h2>
       <div class="youth">
         <div class="service-card">
@@ -752,7 +770,7 @@
           </div>
         </div>
         <div class="service-card">
-          <img src="images/service_meme_new4.gif" alt="Meme Dump">
+          <img src="images/service_meme_new4.gif" alt="Meme Dump" onerror="this.src='images/fallback_meme.gif'">
           <div>
             <h3>Насру низкосортными мемами</h3>
             <p>Залью тебя мемами уровня “школьный туалет” — полный отстой!</p>
@@ -805,6 +823,8 @@
     </section>
 
     <section id="portfolio" class="portfolio">
+      <div class="youth decorative-particles"></div>
+      <div class="retro decorative-lines"></div>
       <h2>Портфолио</h2>
       <img src="images/meme1.gif" alt="Meme 1" class="youth">
       <img src="images/meme2.gif" alt="Meme 2" class="youth">
@@ -820,6 +840,8 @@
     </section>
 
     <section id="testimonials" class="testimonials">
+      <div class="youth decorative-particles"></div>
+      <div class="retro decorative-lines"></div>
       <h2>Отзывы</h2>
       <div>
         <p>“Кирилл закидал меня мемами про мою мать — теперь я в детдоме!”</p>
@@ -842,6 +864,8 @@
     </section>
 
     <section id="contact" class="contact">
+      <div class="youth decorative-particles"></div>
+      <div class="retro decorative-lines"></div>
       <h2>Связаться</h2>
       <form>
         <input type="text" placeholder="Твоё имя" required>
