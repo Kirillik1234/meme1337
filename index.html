@@ -95,18 +95,18 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(45deg, #1C2526, #2A3B3C);
     }
 
-    .youth .hero h1 {
-      font-size: 96px;
-      text-transform: uppercase;
-      animation: glitch 2s linear infinite;
+    .youth .logo {
+      width: 300px;
+      height: 100px;
+      animation: neonGlow 2s infinite;
     }
 
-    @keyframes glitch {
-      2%, 64% { transform: translate(2px, 0) skew(0deg); }
-      4%, 60% { transform: translate(-2px, 0) skew(0deg); }
-      62% { transform: translate(0, 0) skew(5deg); }
+    @keyframes neonGlow {
+      0%, 100% { filter: drop-shadow(0 0 10px #6B4E9B); }
+      50% { filter: drop-shadow(0 0 20px #00C4FF); }
     }
 
     .youth .hero p {
@@ -189,13 +189,32 @@
       height: 100vh;
       text-align: center;
       padding: 20px;
-      background: url('https://media.gifer.com/embedded/download/9n2E.gif') repeat;
+      background: url('images/retro2.gif') repeat;
+      position: relative;
     }
 
-    .retro .hero h1 {
-      font-size: 64px;
-      color: #FF00FF;
-      text-shadow: 2px 2px #00FF00;
+    .retro .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/tv_noise.gif');
+      opacity: 0.1;
+      z-index: -1;
+      animation: tvNoise 0.1s infinite;
+    }
+
+    @keyframes tvNoise {
+      0% { transform: translate(1px, 1px); }
+      50% { transform: translate(-1px, -1px); }
+      100% { transform: translate(1px, 1px); }
+    }
+
+    .retro .logo {
+      width: 300px;
+      height: 100px;
       animation: blink 0.5s infinite;
     }
 
@@ -223,8 +242,8 @@
 
     /* Общие стили */
     section {
-      padding: 80px 20px;
-      max-width: 1200px;
+      padding: 100px 20px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -252,14 +271,14 @@
       animation: blink 0.5s infinite;
     }
 
-    .about p, .testimonials p {
+    .about p, .why-me p, .testimonials p {
       font-size: 18px;
       line-height: 1.6;
       padding: 20px;
       border-radius: 10px;
     }
 
-    .youth .about p, .youth .testimonials p {
+    .youth .about p, .youth .why-me p, .youth .testimonials p {
       background: rgba(27, 37, 38, 0.5);
       animation: slideIn 1s ease-out;
     }
@@ -269,32 +288,34 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    .retro .about p, .retro .testimonials p {
+    .retro .about p, .retro .why-me p, .retro .testimonials p {
       background: #FFFF00;
       border: 5px double #0000FF;
       color: #FF0000;
     }
 
     .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 20px;
     }
 
     .service-card {
+      display: flex;
+      align-items: center;
       padding: 20px;
       border-radius: 10px;
-      text-align: center;
       transition: transform 0.3s;
     }
 
     .youth .service-card {
       background: rgba(107, 78, 155, 0.2);
       border: 2px solid #6B4E9B;
+      transform: perspective(1000px) rotateY(0deg);
     }
 
     .youth .service-card:hover {
-      transform: translateY(-10px);
+      transform: perspective(1000px) rotateY(10deg);
       box-shadow: 0 0 20px #6B4E9B;
     }
 
@@ -302,6 +323,17 @@
       background: #00FF00;
       border: 5px double #FF00FF;
       animation: shake 0.5s infinite;
+    }
+
+    .service-card img {
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+      border-radius: 5px;
+    }
+
+    .service-card div {
+      flex: 1;
     }
 
     .service-card h3 {
@@ -516,7 +548,7 @@
       transform: scale(1.1);
     }
 
-    /* Эффект переноса */
+    /* Эффект портала */
     .transition-overlay {
       position: fixed;
       top: 0;
@@ -531,26 +563,54 @@
       overflow: hidden;
     }
 
+    .portal {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #6B4E9B, #00C4FF, transparent);
+      animation: portalSpin 2s linear infinite;
+    }
+
+    .retro .portal {
+      background: radial-gradient(circle, #FF00FF, #00FF00, transparent);
+      border: 5px double #0000FF;
+    }
+
+    @keyframes portalSpin {
+      0% { transform: rotate(0deg) scale(0.5); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
     .transition-overlay img {
       position: absolute;
       width: 100px;
       height: 100px;
-      animation: fly 1s linear;
+      animation: suckIn 1.5s ease-in;
     }
 
     .transition-overlay .clock {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
+      z-index: 1000;
     }
 
-    @keyframes fly {
-      0% { transform: translateX(-100vw); }
-      100% { transform: translateX(100vw); }
+    @keyframes suckIn {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(0, 0) scale(0); opacity: 0; }
+    }
+
+    /* Параллакс */
+    .youth .parallax {
+      position: relative;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
     }
 
     @media (max-width: 768px) {
-      .youth .hero h1, .retro .hero h1 {
-        font-size: 48px;
+      .youth .hero .logo, .retro .logo {
+        width: 200px;
+        height: 66px;
       }
 
       .youth .hero p, .retro .hero p {
@@ -564,6 +624,15 @@
       .modal-content {
         padding: 20px;
       }
+
+      .service-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .service-card img {
+        margin-bottom: 10px;
+      }
     }
   </style>
 </head>
@@ -572,22 +641,24 @@
     <div class="modal-content youth">
       <h2>Скок лет, бро?</h2>
       <button onclick="startTransition('youth')">42, братишка, эщкере!</button>
-      <button onclick="startTransition('retro')" style="font-family: 'Comic Sans MS', cursive; background: #00FF00; border: 3px solid #0000FF; color: #FF0000;">Я дед, где мой ICQ? *звук модема*</button>
+      <button id="retroButton" onclick="startTransition('retro')" style="font-family: 'Comic Sans MS', cursive; background: #00FF00; border: 3px solid #0000FF; color: #FF0000;">Я дед, где мой ICQ?</button>
     </div>
   </div>
 
   <div class="transition-overlay" id="transitionOverlay">
-    <img src="https://i.imgflip.com/5w8z6m.jpg" style="top: 10%; animation-delay: 0.1s;">
-    <img src="https://media.gifer.com/embedded/download/2r.gif" style="top: 30%; animation-delay: 0.3s;">
-    <img src="https://i.imgflip.com/1g8my4.jpg" style="top: 50%; animation-delay: 0.5s;">
-    <img src="https://media.gifer.com/embedded/download/2k.gif" style="top: 70%; animation-delay: 0.7s;">
-    <img id="clock" class="clock" src="https://media.gifer.com/embedded/download/9n2E.gif">
+    <div class="portal youth"></div>
+    <img src="images/portal_meme1.gif" style="top: 10%; animation-delay: 0.1s;">
+    <img src="images/portal_meme2.gif" style="top: 30%; animation-delay: 0.3s;">
+    <img src="images/portal_meme3.gif" style="top: 50%; animation-delay: 0.5s;">
+    <img src="images/portal_meme4.gif" style="top: 70%; animation-delay: 0.7s;">
+    <img id="clock" class="clock" src="images/clock_youth.gif">
   </div>
 
   <nav class="navbar">
     <div>
       <a href="#home">Главная</a>
       <a href="#about">Обо мне</a>
+      <a href="#why-me">Почему я</a>
       <a href="#services">Услуги</a>
       <a href="#portfolio">Портфолио</a>
       <a href="#testimonials">Отзывы</a>
@@ -596,85 +667,118 @@
   </nav>
 
   <div class="content" style="display: none;">
-    <section id="home" class="hero">
+    <section id="home" class="hero parallax" style="background-image: url('images/parallax_bg.gif');">
       <canvas id="particles" class="youth"></canvas>
-      <h1>МЕМЫ</h1>
+      <svg class="logo youth" viewBox="0 0 300 100">
+        <text x="50%" y="50%" text-anchor="middle" fill="#00C4FF" font-size="60" font-family="Orbitron" font-weight="bold" textLength="280">MEMES</text>
+        <text x="50%" y="50%" text-anchor="middle" fill="none" stroke="#6B4E9B" stroke-width="2" font-size="60" font-family="Orbitron" font-weight="bold" textLength="280">MEMES</text>
+      </svg>
+      <img src="images/retro_logo.gif" class="logo retro" style="display: none;" alt="Retro Logo">
       <p>Погрузись в мир мемов и вайба с Кириллом Мищенко!</p>
       <button onclick="window.location.href='#services'" class="youth">Заказать мем</button>
-      <img src="https://media.gifer.com/embedded/download/2k.gif" alt="Dancing Baby" class="retro retro-gif" style="display: none;">
-      <marquee class="retro" style="display: none;">МЕМЫ РУЛЯТ! ICQ FOREVER!</marquee>
+      <marquee class="retro" style="display: none;">МЕМЫ РУЛЯТ! ICQ FOREVER! КИРИЛЛ ЖЖЁТ!</marquee>
     </section>
 
     <section id="about" class="about">
       <h2>Кто я?</h2>
-      <p>Я Кирилл Мищенко, мем-лорд и король вайба. Моя миссия — создавать мемы, которые взрывают чаты, монтировать видосы, от которых падает челюсть, и организовывать тусовки, о которых говорят годами. Готов сделать твой паблик или тусу легендой? Пиши мне!</p>
+      <p>Я Кирилл Мищенко, мем-лорд и мастер подбора. Создаю мемы, которые взрывают чаты, и монтирую видосы, от которых падает челюсть. Хочешь, чтобы твой паблик или ролик стали мемами-легендами? Я твой чел!</p>
+    </section>
+
+    <section id="why-me" class="why-me">
+      <h2>Почему я?</h2>
+      <p>Я знаю, как подобрать мемы, которые рвут шаблоны, и контент, который разлетается по чатам. В курсе всех трендов — от TikTok до ретро-вайба. Выбирай меня, и твой вайб будет на максималках!</p>
     </section>
 
     <section id="services" class="services">
       <h2>Мои услуги</h2>
       <div class="youth">
         <div class="service-card">
-          <h3>Мемы и TikTok-видосы</h3>
-          <p>Создам мемы и короткие ролики для твоих тус или пабликов. Вирусный контент гарантирован!</p>
-          <p>Цена: 420 RUB</p>
+          <img src="images/service_meme.gif" alt="Meme">
+          <div>
+            <h3>Подбор мемов</h3>
+            <p>Выберу мемы и сделаю короткие ролики для тус или пабликов. Вирусный вайб гарантирован!</p>
+            <p>Цена: 420 RUB</p>
+          </div>
         </div>
         <div class="service-card">
-          <h3>Монтаж роликов</h3>
-          <p>Смонтирую видосы с киберпанк-эффектами для YouTube или TikTok. Будет огонь!</p>
-          <p>Цена: 69 USD</p>
+          <img src="images/service_video.gif" alt="Video">
+          <div>
+            <h3>Монтаж роликов</h3>
+            <p>Смонтирую видосы с киберпанк-эффектами для YouTube или TikTok. Будет огонь!</p>
+            <p>Цена: 69 USD</p>
+          </div>
         </div>
         <div class="service-card">
-          <h3>Организация ивентов</h3>
-          <p>Дискотеки, квесты, школьные тусы — я сделаю так, что все будут в шоке!</p>
-          <p>Цена: 1337 BTC</p>
+          <img src="images/service_meme.gif" alt="Meme Therapy">
+          <div>
+            <h3>Мем-терапия для депрессии</h3>
+            <p>Заставлю тебя ржать над твоей собственной жалкой жизнью с абсурдными мемами. Гарантия: или смех, или ты умрёшь от идиотизма!</p>
+            <p>Цена: 666 RUB</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <img src="images/service_video.gif" alt="Meme Attack">
+          <div>
+            <h3>Мем-атака на врагов</h3>
+            <p>Залью соцсети твоих врагов мемами настолько тупыми, что они сбегут в психушку. Полный хаос гарантирован!</p>
+            <p>Цена: 13 BTC</p>
+          </div>
         </div>
       </div>
       <div class="retro" style="display: none;">
         <div class="service-card">
-          <h3>Ностальгические мемы</h3>
-          <p>Мемы в стиле 2000-х для твоего ВКонтакте или корпоратива. Полный кринж!</p>
-          <p>Цена: 777 JPY</p>
+          <img src="images/retro_service_meme.gif" alt="Retro Meme">
+          <div>
+            <h3>Ностальгические мемы</h3>
+            <p>Подберу мемы в стиле 2000-х для твоего ВКонтакте или корпоратива. Полный кринж!</p>
+            <p>Цена: 777 JPY</p>
+          </div>
         </div>
         <div class="service-card">
-          <h3>Настройка соцсетей</h3>
-          <p>Научу маму или папу постить в Instagram. Соцсети для всех возрастов!</p>
-          <p>Цена: 42 ETH</p>
-        </div>
-        <div class="service-card">
-          <h3>Ретро-ролики</h3>
-          <p>Видео в стиле 2000-х с мигающими эффектами. Ностальгия обеспечена!</p>
-          <p>Цена: 999 RUB</p>
+          <img src="images/retro_service_social.gif" alt="Social">
+          <div>
+            <h3>Настройка соцсетей</h3>
+            <p>Научу маму или папу постить в Instagram. Соцсети для всех возрастов!</p>
+            <p>Цена: 42 ETH</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="portfolio" class="portfolio">
       <h2>Портфолио</h2>
-      <img src="https://i.imgflip.com/5w8z6m.jpg" alt="Distracted Boyfriend" class="youth">
-      <img src="https://i.imgflip.com/1g8my4.jpg" alt="Drake Meme" class="youth">
-      <img src="https://i.imgflip.com/4/1bij.jpg" alt="Success Kid" class="youth">
-      <img src="https://i.imgflip.com/1ur9b0.jpg" alt="Doge" class="youth">
-      <img src="https://media.gifer.com/embedded/download/2r.gif" alt="Hamster Dance" class="retro" style="display: none;">
-      <img src="https://media.gifer.com/embedded/download/9n2E.gif" alt="Under Construction" class="retro" style="display: none;">
-      <img src="https://media.gifer.com/embedded/download/2k.gif" alt="Dancing Baby" class="retro" style="display: none;">
-      <img src="https://media.gifer.com/embedded/download/1k.gif" alt="Matrix" class="retro" style="display: none;">
-      <img src="https://i.imgflip.com/7nq3.jpg" alt="Scumbag Steve" class="youth">
-      <img src="https://i.imgflip.com/1otk96.jpg" alt="Bad Luck Brian" class="youth">
+      <img src="images/meme1.gif" alt="Meme 1" class="youth">
+      <img src="images/meme2.gif" alt="Meme 2" class="youth">
+      <img src="images/meme3.gif" alt="Meme 3" class="youth">
+      <img src="images/meme4.gif" alt="Meme 4" class="youth">
+      <img src="images/meme5.gif" alt="Meme 5" class="youth">
+      <img src="images/meme6.gif" alt="Meme 6" class="youth">
+      <img src="images/retro1.gif" alt="Retro 1" class="retro" style="display: none;">
+      <img src="images/retro2.gif" alt="Retro 2" class="retro" style="display: none;">
+      <img src="images/retro3.gif" alt="Retro 3" class="retro" style="display: none;">
+      <img src="images/retro4.gif" alt="Retro 4" class="retro" style="display: none;">
+      <img src="images/retro5.gif" alt="Retro 5" class="retro" style="display: none;">
     </section>
 
     <section id="testimonials" class="testimonials">
       <h2>Отзывы</h2>
       <div>
-        <p>“Кирилл сделал мем для нашей тусы — все ржали неделю!” — Дима, 11 класс</p>
+        <p>“Кирилл закидал меня мемами про мою смерть — теперь я ржу в гробу, гений!” — Дима, зомби 11 класса</p>
       </div>
       <div>
-        <p>“Видос от Кирилла попал в тренды TikTok. Это было эпично!” — Аня, блогер</p>
+        <p>“Его мемы такие чёрные, что я умер от смеха, а потом воскрес как мем-монстр!” — Аня, блогер-нежить</p>
       </div>
       <div>
-        <p>“Туса, которую организовал Кирилл, — лучший движ в школе!” — Макс, DJ</p>
+        <p>“Мемы от Кирилла — мой мозг взорвался, теперь я овощ с лол-кеками в голове!” — Макс, школьный призрак</p>
+      </div>
+      <div>
+        <p>“Смонтировал ролик, где я танцую на своём похоронах — миллион просмотров, спасибо, садист!” — Саша, ютубер-скелет</p>
       </div>
       <div class="retro" style="display: none;">
-        <p>“Мемы 2000-х от Кирилла — это как вернуться в юность!” — Тётя Света</p>
+        <p>“Ретро-мемы от Кирилла довели меня до инфаркта, теперь я привидение с ICQ!” — Тётя Света, дух 90-х</p>
+      </div>
+      <div class="retro" style="display: none;">
+        <p>“Настроил Instagram маме, теперь она постит мемы с моим трупом — Кирилл, ты дьявол!” — Дядя Вова, жертва Wi-Fi</p>
       </div>
     </section>
 
@@ -700,26 +804,38 @@
   <script>
     function startTransition(style) {
       const overlay = document.getElementById('transitionOverlay');
+      const portal = document.querySelector('.portal');
       const clock = document.getElementById('clock');
       overlay.style.display = 'flex';
-      
+      portal.className = 'portal ' + style;
+
       if (style === 'youth') {
-        clock.src = 'https://media.gifer.com/embedded/download/2f.gif'; // Часы вперёд
+        clock.src = 'images/clock_youth.gif';
       } else {
-        clock.src = 'https://media.gifer.com/embedded/download/9n2E.gif'; // Часы назад
+        clock.src = 'images/clock_retro.gif';
       }
 
       gsap.to(overlay, {
         opacity: 1,
-        duration: 1,
+        duration: 0.5,
         onComplete: () => {
-          setStyle(style);
-          gsap.to(overlay, {
-            opacity: 0,
-            duration: 1,
-            delay: 1,
+          gsap.to('.transition-overlay img', {
+            scale: 0,
+            duration: 1.5,
+            stagger: 0.2
+          });
+          gsap.to('.portal', {
+            scale: 2,
+            duration: 2,
             onComplete: () => {
-              overlay.style.display = 'none';
+              setStyle(style);
+              gsap.to(overlay, {
+                opacity: 0,
+                duration: 0.5,
+                onComplete: () => {
+                  overlay.style.display = 'none';
+                }
+              });
             }
           });
         }
@@ -732,10 +848,11 @@
       document.querySelector('.content').style.display = 'block';
 
       if (style === 'youth') {
-        gsap.from(".hero h1", { y: 100, opacity: 0, duration: 1 });
+        gsap.from(".hero .logo", { y: 100, opacity: 0, duration: 1 });
         gsap.from(".hero p", { y: 50, opacity: 0, duration: 1, delay: 0.5 });
         gsap.from(".hero button", { scale: 0, duration: 0.5, delay: 1 });
         gsap.from(".service-card", { y: 100, opacity: 0, stagger: 0.2, duration: 1, delay: 1.5 });
+        gsap.from(".portfolio img", { scale: 0, stagger: 0.1, duration: 0.5, delay: 2 });
         document.querySelectorAll('.youth').forEach(el => el.style.display = '');
         document.querySelectorAll('.retro').forEach(el => el.style.display = 'none');
 
@@ -746,17 +863,17 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
 
         const particles = new THREE.BufferGeometry();
-        const particleCount = 1500;
+        const particleCount = 3000;
         const posArray = new Float32Array(particleCount * 3);
 
         for (let i = 0; i < particleCount * 3; i++) {
-          posArray[i] = (Math.random() - 0.5) * 15;
+          posArray[i] = (Math.random() - 0.5) * 25;
         }
 
         particles.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
         const material = new THREE.PointsMaterial({
-          size: 0.03,
+          size: 0.05,
           color: 0x6B4E9B,
           transparent: true,
           opacity: 0.8
@@ -769,7 +886,7 @@
 
         function animate() {
           requestAnimationFrame(animate);
-          particleSystem.rotation.y += 0.003;
+          particleSystem.rotation.y += 0.005;
           renderer.render(scene, camera);
         }
 
