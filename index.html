@@ -52,7 +52,8 @@
 
     body {
       transition: all 0.5s;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Устранение ползунка */
+      min-height: 100vh;
     }
 
     /* Молодёжный стиль */
@@ -96,6 +97,7 @@
       position: relative;
       overflow: hidden;
       background: linear-gradient(45deg, #1C2526, #2A3B3C);
+      padding: 0 20px;
     }
 
     .youth .logo {
@@ -112,6 +114,7 @@
       font-size: 48px;
       text-align: center;
       margin-bottom: 40px;
+      padding: 0 20px;
     }
 
     .youth .hero p {
@@ -256,8 +259,10 @@
     /* Общие стили */
     section {
       padding: 100px 20px;
-      max-width: 1400px;
+      width: 100%;
+      max-width: 100%;
       margin: 0 auto;
+      min-height: 100vh; /* Устранение дёрганья */
     }
 
     .about p, .why-me p, .testimonials p {
@@ -265,6 +270,7 @@
       line-height: 1.6;
       padding: 20px;
       border-radius: 10px;
+      width: 100%;
     }
 
     .youth .about p, .youth .why-me p, .youth .testimonials p {
@@ -287,6 +293,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      width: 100%;
     }
 
     .service-card {
@@ -295,6 +302,7 @@
       padding: 20px;
       border-radius: 10px;
       transition: transform 0.3s;
+      width: 100%;
     }
 
     .youth .service-card {
@@ -346,6 +354,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
+      width: 100%;
     }
 
     .youth .portfolio img {
@@ -372,6 +381,14 @@
       margin: 20px 0;
       padding: 20px;
       border-radius: 10px;
+      animation: shakeLight 0.5s infinite; /* Дрожание отзывов */
+      width: 100%;
+    }
+
+    @keyframes shakeLight {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      50% { transform: translate(-1px, -1px) rotate(-1deg); }
+      100% { transform: translate(1px, 1px) rotate(0deg); }
     }
 
     .youth .testimonials div {
@@ -388,6 +405,16 @@
       flex-direction: column;
       max-width: 600px;
       margin: 0 auto;
+      animation: shakeStrong 0.3s infinite; /* Сильное дрожание формы */
+      width: 100%;
+    }
+
+    @keyframes shakeStrong {
+      0% { transform: translate(5px, 5px) rotate(2deg); }
+      25% { transform: translate(-5px, -5px) rotate(-2deg); }
+      50% { transform: translate(5px, -5px) rotate(2deg); }
+      75% { transform: translate(-5px, 5px) rotate(-2deg); }
+      100% { transform: translate(5px, 5px) rotate(2deg); }
     }
 
     .youth .contact input, .youth .contact textarea {
@@ -444,6 +471,7 @@
     footer {
       text-align: center;
       padding: 20px;
+      width: 100%;
     }
 
     .youth footer {
