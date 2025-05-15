@@ -54,11 +54,12 @@
       transition: all 0.5s;
       overflow-x: hidden;
       min-height: 100vh;
+      background: url('images/parallax_bg.gif') repeat;
+      background-size: 200px 200px;
     }
 
     /* Молодёжный стиль */
     body.youth {
-      background: #1C2526;
       color: #F4F4F4;
       font-family: 'Orbitron', sans-serif;
       overflow: auto;
@@ -95,7 +96,6 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(45deg, #1C2526, #2A3B3C);
       padding: 0 20px;
     }
 
@@ -149,7 +149,6 @@
 
     /* Ретро-стиль 2000-х */
     body.retro {
-      background: #FFFFFF;
       color: #0000FF;
       font-family: 'Comic Sans MS', cursive;
       overflow-x: hidden;
@@ -175,28 +174,7 @@
       height: 100vh;
       text-align: center;
       padding: 20px;
-      background: url('images/retro_background.gif') repeat;
       position: relative;
-      background-size: 100px 100px; /* Увеличенный размер для более "пиксельного" эффекта */
-    }
-
-    .retro .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('images/retro_noise.gif');
-      opacity: 0.2;
-      z-index: -1;
-      animation: tvNoise 0.2s infinite;
-    }
-
-    @keyframes tvNoise {
-      0% { transform: translate(2px, 2px); }
-      50% { transform: translate(-2px, -2px); }
-      100% { transform: translate(2px, 2px); }
     }
 
     .retro .logo {
@@ -247,52 +225,6 @@
 
     .about, .why-me, .testimonials, .services, .portfolio, .contact {
       position: relative;
-    }
-
-    /* Декоративные элементы между секциями */
-    .youth section::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      background: linear-gradient(to top, rgba(107, 78, 155, 0.3), transparent);
-      z-index: -1;
-    }
-
-    .youth .decorative-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('images/particles.gif') repeat;
-      opacity: 0.2;
-      z-index: -1;
-    }
-
-    .retro section::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      background: url('images/retro_line.gif') repeat-x;
-      background-size: 50px 50px;
-      z-index: -1;
-    }
-
-    .retro .decorative-lines {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('images/retro_line.gif') repeat;
-      opacity: 0.3;
-      z-index: -1;
     }
 
     .about p, .why-me p, .testimonials p {
@@ -724,7 +656,7 @@
       <a href="#services">Услуги</a>
       <a href="#portfolio">Портфолио</a>
       <a href="#testimonials">Отзывы</a>
-      <a href="#contact"> NORTHСвязь</a>
+      <a href="#contact">Связь</a>
     </div>
   </nav>
 
@@ -742,22 +674,16 @@
     </section>
 
     <section id="about" class="about">
-      <div class="youth decorative-particles"></div>
-      <div class="retro decorative-lines"></div>
       <h2>Кто я?</h2>
       <p>Я Кирилл Мищенко, мемный урод, который роет мемы из могил и смеётся над твоей мамкой. Мой мозг — мусорка с кринжом 2000-х, а монтаж — как если бы дедуля с тремором резал видео. Хочешь мемов, от которых хочется повеситься? Звони, я помогу сдохнуть от смеха!</p>
     </section>
 
     <section id="why-me" class="why-me">
-      <div class="youth decorative-particles"></div>
-      <div class="retro decorative-lines"></div>
       <h2>Почему я?</h2>
       <p>Я знаю, как подобрать мемы, которые рвут шаблоны, и контент, который разлетается по чатам. В курсе всех трендов — от TikTok до ретро-вайба. Выбирай меня, и твой вайб будет на максималках!</p>
     </section>
 
     <section id="services" class="services">
-      <div class="youth decorative-particles"></div>
-      <div class="retro decorative-lines"></div>
       <h2>Мои услуги</h2>
       <div class="youth">
         <div class="service-card">
@@ -838,8 +764,6 @@
     </section>
 
     <section id="portfolio" class="portfolio">
-      <div class="youth decorative-particles"></div>
-      <div class="retro decorative-lines"></div>
       <h2>Портфолио</h2>
       <img src="images/meme1.gif" alt="Meme 1" class="youth">
       <img src="images/meme2.gif" alt="Meme 2" class="youth">
@@ -855,8 +779,6 @@
     </section>
 
     <section id="testimonials" class="testimonials">
-      <div class="youth decorative-particles"></div>
-      <div class="retro decorative-lines"></div>
       <h2>Отзывы</h2>
       <div>
         <p>“Кирилл закидал меня мемами про мою мать — теперь я в детдоме!”</p>
@@ -879,8 +801,6 @@
     </section>
 
     <section id="contact" class="contact">
-      <div class="youth decorative-particles"></div>
-      <div class="retro decorative-lines"></div>
       <h2>Связаться</h2>
       <form>
         <input type="text" placeholder="Твоё имя" required>
@@ -949,37 +869,22 @@
         document.querySelectorAll('.youth').forEach(el => el.style.display = '');
         document.querySelectorAll('.retro').forEach(el => el.style.display = 'none');
 
-        // Three.js Particles
+        // Three.js Particles (Глобус)
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('particles'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const particles = new THREE.BufferGeometry();
-        const particleCount = 3000;
-        const posArray = new Float32Array(particleCount * 3);
+        const geometry = new THREE.SphereGeometry(5, 32, 32);
+        const material = new THREE.MeshBasicMaterial({ color: 0x6B4E9B, transparent: true, opacity: 0.7 });
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
 
-        for (let i = 0; i < particleCount * 3; i++) {
-          posArray[i] = (Math.random() - 0.5) * 25;
-        }
-
-        particles.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-        const material = new THREE.PointsMaterial({
-          size: 0.05,
-          color: 0x6B4E9B,
-          transparent: true,
-          opacity: 0.8
-        });
-
-        const particleSystem = new THREE.Points(particles, material);
-        scene.add(particleSystem);
-
-        camera.position.z = 5;
+        camera.position.z = 10;
 
         function animate() {
           requestAnimationFrame(animate);
-          particleSystem.rotation.y += 0.005;
+          sphere.rotation.y += 0.01;
           renderer.render(scene, camera);
         }
 
